@@ -1,0 +1,133 @@
+metadata:
+  title: |
+    Leagal Services Agreenment Document
+  short title: |
+    Services Agreement
+  description: |
+    This the legal services agreement document
+  authors:
+    - name: William Best
+      organization: Andjelkovic Law Firm
+    - name: Nemanja Anđelković
+      organization: Andjelkovic Law Firm
+  revision_date: 2024-04-05
+---
+objects:
+  - client: Individual
+---
+question: |
+  What is the client's name?
+fields:
+  - Client's First Name: client.name.first
+  - Client's Middle Name: client.name.middle
+    required: False
+  - Client's Last Name: client.name.last
+  - Client's Suffix: client.name.suffix
+    required: False
+    code: name_suffix()
+---
+objects:
+  client_address: Address
+---
+question: |
+  What is your Client's address?
+fields:
+  - Address: client_address.address
+  - Unit: client_address.unit
+    required: False
+  - City: client_address.city
+  - State: client_address.state
+    required: False
+  - Postal Code: client_address.postal_code
+    required: False
+  - Country: client_address.country
+    code: |
+      countries_list()
+    required: False
+---
+objects:
+  - lawyer: Individual
+---
+question: |
+  What is the lawyer's name?
+fields:
+  - Lawyer's First Name: lawyer.name.first
+  - Lawyer's Middle Name: lawyer.name.middle
+    required: False
+  - Lawyer's Last Name: lawyer.name.last
+  - Lawyer's Suffix: lawyer.name.suffix
+    required: False
+    code: name_suffix()
+---
+objects:
+  lawyer_address: Address
+---
+question: |
+  What is your Lawyer's address?
+fields:
+  - Address: lawyer_address.address
+  - Unit: lawyer_address.unit
+    required: False
+  - City: lawyer_address.city
+  - State: lawyer_address.state
+    required: False
+  - Postal Code: lawyer_address.postal_code
+    required: False
+  - Country: lawyer_address.country
+    code: |
+      countries_list()
+    required: False
+---
+question: |
+  What is the legal service agreement fee amount?
+fields:
+  - Value: fee_amount
+    datatype: currency
+under: |
+  ${ client }
+  ${ client_address }
+  ${ lawyer }
+  ${ lawyer_address }
+---
+question: |
+  What date did the client sign the agreement?
+fields:
+  - Date: date_signed
+    datatype: date
+---
+question: Please sign below
+subquestion: |
+  By signing below, you acknowledge that your answers to the questions
+  in this interview were truthful, to the best of your knowledge and you
+  agree to the terms of the agreement.
+signature: client_signature
+under: |
+  ${ client }
+---
+mandatory: True
+question: |
+  Your documents are ready. Please print and file!
+attachment:
+  - name: Leagal Services Agreenment Document
+    filename: leagal_services_agreenment_document
+    content: |
+      [BOLDCENTER] Leagal Services Agreenment Document
+      Client: ${ client }
+      Client Address: ${ client_address }
+      Lawyer: ${ lawyer }
+      Lawyer Address: ${ lawyer_address }
+      Legal Service Agreement Fee Amount: ${ fee_amount }
+      Date Client Sign Agreement ${ date_signed }
+      Client Signature: ${ client_signature }    
+    docx template file: legal-services-agreement_en.docx
+    valid formats:
+      - pdf
+      - docx
+need: 
+  - client
+  - client_address
+  - lawyer
+  - lawyer_address
+  - fee_amount
+  - date_signed
+  - client_signature
