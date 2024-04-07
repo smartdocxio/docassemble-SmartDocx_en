@@ -43,8 +43,8 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
                 out.setdefault(package, []).append(prefix+name)
     return out
 
-setup(name='docassemble.SmartDocxen',
-      version='0.0.1',
+setup(name='docassemble.SmartDocx_en',
+      version='1.0.0',
       description=('A docassemble extension.'),
       long_description='SmartDocx en',
       long_description_content_type='text/markdown',
@@ -56,6 +56,6 @@ setup(name='docassemble.SmartDocxen',
       namespace_packages=['docassemble'],
       install_requires=[],
       zip_safe=False,
-      package_data=find_package_data(where='docassemble/SmartDocxen/', package='docassemble.SmartDocxen'),
+      package_data=find_package_data(where='docassemble/SmartDocx_en/', package='docassemble.SmartDocx_en'),
      )
 
